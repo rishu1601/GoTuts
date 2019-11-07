@@ -29,6 +29,10 @@ func (c car) mph() float64 {
 func (c *car) newTopSpeed(newSpeed float64) {
 	c.topSpeed = newSpeed
 }
+
+//Value receivers -> why use them ? -> whatever changes we do, won't affect the whole struct
+//If the receiver is very large, it is cheaper to use pointer receiver
+
 func indexHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "Whoa! Writing through responseWriter")
 }
