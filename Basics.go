@@ -32,6 +32,8 @@ func multipleReturns(a, b string) (string, string) {
 	return a + "Hi", b + "There"
 }
 
+//Contains information about basic types and type casting available with go
+
 func types() {
 	//Types cannot be dynamic in go, types once compiled are the same throughout the lifecycle
 	var num1 float64 = 8.12
