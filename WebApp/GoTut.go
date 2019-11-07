@@ -2,20 +2,16 @@ package main
 
 import (
 	"fmt"
+	"io/ioutil"
 	"net/http"
 )
 
-func indexHandler(w http.ResponseWriter, r *http.Request) {
-	//Multi Line print
-	fmt.Fprintf(w, `<h1>Hi,where is this from?</h1>
-	<p>nvwe fewf ewf ewfewf</p>
-	<p>efef efw fw efefewfe</p>
-	`)
-	fmt.Fprintf(w, "<h1>Whoa!</h1> Writing through responseWriter")
-	fmt.Fprintf(w, "<p>But not this way</p>")
-	fmt.Fprintf(w, "<p>Its very static</p>")
-}
+//Accessing the internet with Go
+
 func main() {
-	http.HandleFunc("/", indexHandler)
-	http.ListenAndServe(":8000", nil)
+	resp, _ := http.Get("https://www.washingtonpost.com/news-sitemaps/index.xml")
+	bytes, _ := ioutil.ReadAll(resp.Body) //Response is received in bytes
+	stringBody := string(bytes)           //Converting bytes to string
+	fmt.Println(stringBody)
+	resp.Body.Close() //Close the resources used
 }
